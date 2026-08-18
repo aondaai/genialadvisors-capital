@@ -103,29 +103,72 @@ nav a:hover{color:var(--white)}
   overflow:hidden;isolation:isolate;
 }
 .hero-media{position:absolute;inset:0;z-index:-2;overflow:hidden;background:var(--navy)}
-.hero-still{
-  position:absolute;inset:0;background-size:cover;background-position:center;
-  opacity:.5;transition:opacity 1.2s var(--ease);
-}
-.hero-media.playing .hero-still{opacity:0}
-.hero-media video{
-  width:100%;height:100%;object-fit:cover;opacity:0;
-  transition:opacity 1.2s var(--ease);
-}
-.hero-media video.on{opacity:.62}
-/* CSS-only fallback glow — always present, works with or without the video */
-.hero-media::after{
-  content:"";position:absolute;inset:-20%;
+
+/* nebula — layered gradients, breathing. no bytes, no decoder, every device. */
+.hero-media::before{
+  content:"";position:absolute;inset:-25%;z-index:0;
   background:
-    radial-gradient(46% 42% at 72% 42%,rgba(217,164,65,.19),transparent 62%),
-    radial-gradient(58% 55% at 18% 78%,rgba(36,44,92,.6),transparent 66%);
-  animation:breathe 14s var(--ease) infinite alternate;
+    radial-gradient(40% 36% at 62% 76%,rgba(217,164,65,.22),transparent 64%),
+    radial-gradient(50% 44% at 84% 24%,rgba(217,164,65,.11),transparent 66%),
+    radial-gradient(62% 56% at 12% 20%,rgba(46,58,124,.55),transparent 68%),
+    radial-gradient(56% 60% at 28% 90%,rgba(24,31,86,.72),transparent 70%);
+  animation:breathe 16s var(--ease) infinite alternate;
   will-change:transform,opacity;
 }
-@keyframes breathe{from{transform:scale(1) translate3d(0,0,0);opacity:.75}to{transform:scale(1.14) translate3d(2%,-2%,0);opacity:1}}
+@keyframes breathe{from{transform:scale(1) translate3d(0,0,0);opacity:.72}to{transform:scale(1.13) translate3d(2%,-2%,0);opacity:1}}
+/* star dust — one tiled inline SVG, ~2.4 KB, no request */
+.hero-media::after{
+  content:"";position:absolute;inset:0;z-index:0;opacity:.45;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Ccircle cx='135.7' cy='167.9' r='0.8' fill='%23fff' opacity='0.52'/%3E%3Ccircle cx='256.5' cy='57.0' r='1.0' fill='%23fff' opacity='0.53'/%3E%3Ccircle cx='184.2' cy='55.9' r='0.8' fill='%23fff' opacity='0.41'/%3E%3Ccircle cx='27.2' cy='242.9' r='1.3' fill='%23fff' opacity='0.64'/%3E%3Ccircle cx='178.6' cy='118.8' r='0.8' fill='%23fff' opacity='0.66'/%3E%3Ccircle cx='184.7' cy='47.2' r='0.6' fill='%23fff' opacity='0.78'/%3E%3Ccircle cx='18.9' cy='10.7' r='0.6' fill='%23fff' opacity='0.62'/%3E%3Ccircle cx='233.4' cy='97.9' r='1.0' fill='%23fff' opacity='0.79'/%3E%3Ccircle cx='155.7' cy='192.1' r='0.8' fill='%23fff' opacity='0.2'/%3E%3Ccircle cx='25.5' cy='196.4' r='0.8' fill='%23fff' opacity='0.9'/%3E%3Ccircle cx='298.7' cy='252.1' r='1.3' fill='%23fff' opacity='0.38'/%3E%3Ccircle cx='227.4' cy='153.9' r='0.6' fill='%23fff' opacity='0.25'/%3E%3Ccircle cx='229.9' cy='120.1' r='0.7' fill='%23fff' opacity='0.47'/%3E%3Ccircle cx='287.4' cy='254.2' r='0.6' fill='%23fff' opacity='0.35'/%3E%3Ccircle cx='278.1' cy='15.7' r='0.8' fill='%23fff' opacity='0.89'/%3E%3Ccircle cx='119.2' cy='21.9' r='1.3' fill='%23fff' opacity='0.34'/%3E%3Ccircle cx='202.5' cy='101.1' r='0.7' fill='%23fff' opacity='0.43'/%3E%3Ccircle cx='289.2' cy='227.4' r='0.6' fill='%23fff' opacity='0.29'/%3E%3Ccircle cx='212.1' cy='3.3' r='0.8' fill='%23fff' opacity='0.76'/%3E%3Ccircle cx='53.3' cy='167.8' r='0.8' fill='%23fff' opacity='0.56'/%3E%3Ccircle cx='295.6' cy='230.9' r='0.8' fill='%23fff' opacity='0.65'/%3E%3Ccircle cx='35.0' cy='126.2' r='0.6' fill='%23fff' opacity='0.2'/%3E%3Ccircle cx='259.3' cy='292.5' r='1.0' fill='%23fff' opacity='0.41'/%3E%3Ccircle cx='265.5' cy='63.2' r='0.8' fill='%23fff' opacity='0.9'/%3E%3Ccircle cx='180.6' cy='173.1' r='0.6' fill='%23fff' opacity='0.89'/%3E%3Ccircle cx='64.0' cy='77.5' r='1.0' fill='%23fff' opacity='0.43'/%3E%3Ccircle cx='88.9' cy='22.0' r='0.6' fill='%23fff' opacity='0.35'/%3E%3Ccircle cx='191.0' cy='4.7' r='0.7' fill='%23fff' opacity='0.46'/%3E%3Ccircle cx='136.0' cy='287.7' r='0.8' fill='%23fff' opacity='0.78'/%3E%3Ccircle cx='40.7' cy='115.8' r='1.3' fill='%23fff' opacity='0.31'/%3E%3Ccircle cx='272.5' cy='245.3' r='0.6' fill='%23fff' opacity='0.71'/%3E%3Ccircle cx='47.5' cy='188.7' r='1.0' fill='%23fff' opacity='0.34'/%3E%3Ccircle cx='285.0' cy='264.7' r='1.0' fill='%23fff' opacity='0.25'/%3E%3Ccircle cx='14.2' cy='32.7' r='1.0' fill='%23fff' opacity='0.87'/%3E%3C/svg%3E");
+  background-size:300px 300px;
+}
+
+/* ---- the turn-line, at hero scale ----
+   Same motif as section 06: the fall is muted, the turn is amber.
+   Vector, so it is razor sharp at any density and can be as bright as it needs
+   to be — and it is composed per aspect ratio instead of cropped from 16:9.  */
+.hero-turn{position:absolute;inset:0;width:100%;height:100%;z-index:1;pointer-events:none}
+.hero-turn.tall{display:none}
+.hero-turn path{fill:none;stroke-linecap:round}
+/* undrawn is the resting state; `head` is a short travelling dash that runs
+   just ahead of the trail's leading edge */
+.hero-turn .trail{stroke-dasharray:var(--l);stroke-dashoffset:var(--l)}
+.hero-turn .head{stroke-dasharray:22 var(--l);stroke-dashoffset:0}
+.hero-turn .vx{opacity:0;transform:scale(.3);transform-origin:var(--vx) var(--vy)}
+/* the transitions live only in the drawn state, so leaving the hero resets the
+   line instantly instead of playing it backwards behind the visitor */
+.hero-media.on .hero-turn .trail{stroke-dashoffset:0;transition:stroke-dashoffset 1.8s var(--ease)}
+.hero-media.on .hero-turn .head{stroke-dashoffset:calc(var(--l) * -1);transition:stroke-dashoffset 1.8s var(--ease)}
+.hero-media.on .hero-turn .rise .trail,.hero-media.on .hero-turn .rise .head{transition-delay:1.25s}
+.hero-media.on .hero-turn .vx{opacity:1;transform:scale(1);
+  transition:opacity .5s var(--ease) 1.15s,transform .6s var(--ease) 1.15s}
+
 .hero-scrim{
   position:absolute;inset:0;z-index:-1;pointer-events:none;
-  background:linear-gradient(100deg,var(--navy) 4%,rgba(6,9,43,.88) 40%,rgba(6,9,43,.45) 72%,rgba(6,9,43,.72) 100%);
+  background:linear-gradient(100deg,
+    rgba(6,9,43,.97) 0%,rgba(6,9,43,.92) 30%,rgba(6,9,43,.62) 48%,
+    rgba(6,9,43,.16) 70%,rgba(6,9,43,.06) 86%,rgba(6,9,43,.34) 100%);
+}
+/* The composition switches on shape, not on width: a portrait tablet needs the
+   portrait turn just as much as a phone does, and a phone in landscape wants
+   the wide one. Cropping a 16:9 frame into a 9:19 viewport is what made the
+   old hero video disappear on mobile. */
+@media(max-aspect-ratio:1/1){
+  .hero-turn.wide{display:none}
+  .hero-turn.tall{display:block}
+  /* portrait: the copy sits top-left, the turn owns the bottom-right */
+  .hero-scrim{
+    background:radial-gradient(126% 74% at 12% 26%,
+      rgba(6,9,43,.97) 0%,rgba(6,9,43,.94) 38%,rgba(6,9,43,.72) 60%,
+      rgba(6,9,43,.3) 82%,rgba(6,9,43,.1) 100%);
+  }
+}
+/* portrait has no empty column to hide the line in — so the copy carries its
+   own halo and stays legible wherever the turn passes behind it */
+@media(max-width:760px){
+  .hero .kicker,.hero h1,.hero-desc,.hero-tag,.hero-note{
+    text-shadow:0 1px 12px rgba(6,9,43,.95),0 0 30px rgba(6,9,43,.85);
+  }
 }
 .hero .wrap{width:100%}
 .hero h1{max-width:14ch}
@@ -334,6 +377,12 @@ footer{padding:clamp(46px,6vw,72px) var(--pad);border-top:1px solid rgba(154,163
   .turn path{stroke-dashoffset:0}.turn circle{opacity:1;transform:none}
 }
 </style>
+<noscript><style>
+  /* sem JS a virada não se anima — mas continua lá, no estado final */
+  .hero-turn .trail{stroke-dashoffset:0}
+  .hero-turn .head{display:none}
+  .hero-turn .vx{opacity:1;transform:none}
+</style></noscript>
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="ks" viewBox="524 519 999 1002"><path fill="#fff" d="M 547.6 989.1 C 586.3 1004.5 623.9 1023.2 662.4 1039.2 C 680.3 1046.7 698.2 1054.1 715.9 1062.0 C 723.2 1065.3 725.5 1070.3 725.9 1078.2 C 726.4 1094.3 726.4 1110.5 726.5 1126.6 L 726.8 1224.0 L 726.2 1500.9 C 721.2 1501.3 568.3 1433.8 547.8 1425.2 L 547.6 989.1 z"/><path fill="#fff" d="M 1497.7 990.1 L 1498.3 990.6 C 1499.3 994.4 1498.9 1019.4 1498.9 1024.8 L 1498.9 1093.1 L 1498.9 1425.1 C 1441.0 1449.4 1382.1 1476.2 1324.3 1501.2 C 1322.1 1497.5 1323.1 1482.3 1323.1 1476.6 L 1323.1 1411.5 C 1323.1 1370.2 1320.8 1077.3 1325.0 1068.5 C 1326.7 1065.2 1333.5 1061.9 1336.8 1060.2 C 1359.0 1048.8 1383.0 1039.8 1405.8 1029.9 C 1436.5 1016.5 1466.6 1002.4 1497.7 990.1 z"/><path fill="#fff" d="M 1113.2 988.8 C 1123.5 992.8 1133.6 997.3 1143.7 1001.8 C 1189.8 1022.7 1236.6 1042.1 1282.5 1063.4 C 1284.3 1064.2 1287.6 1069.9 1288.8 1071.8 C 1290.5 1118.2 1289.0 1175.1 1289.0 1221.9 L 1288.9 1500.2 L 1176.4 1450.8 C 1158.4 1443.0 1129.7 1431.6 1113.1 1422.8 C 1111.9 1363.2 1113.0 1298.5 1113.1 1238.7 L 1113.2 988.8 z"/><path fill="#fff" d="M 933.7 989.0 C 935.6 991.9 934.8 1397.0 934.8 1423.3 C 877.4 1449.5 819.5 1474.8 761.3 1499.3 C 759.0 1496.6 760.0 1440.2 760.0 1430.7 L 759.8 1300.7 L 759.6 1150.2 C 759.6 1124.8 759.0 1095.9 760.1 1070.7 C 763.9 1064.8 765.3 1062.4 771.9 1059.5 C 786.7 1053.1 801.7 1047 816.6 1040.5 L 933.7 989.0 z"/><path fill="#D9A441" d="M 1024.7 539.0 C 1030.0 540.0 1046.6 547.8 1052.4 550.3 C 1074.3 559.7 1096.0 569.2 1117.7 578.9 L 1293.1 654.9 C 1226.8 685.0 1160.1 714.5 1093.2 743.4 C 1072.8 733.8 1046.5 722.7 1025.5 714.3 C 1018.5 714.9 967.6 738.9 956.5 743.1 C 940.4 737.0 913.3 724.1 896.8 717.0 C 850.3 696.5 803.8 675.8 757.5 654.7 C 846.0 616.9 936.9 578.2 1024.7 539.0 z"/><path fill="#D9A441" d="M 731.5 873.4 C 749.5 879.7 780.4 894.1 798.9 902.0 C 840.7 919.9 882.7 937.6 924.7 955.0 C 919.3 957.8 895.2 969.6 890.3 971.5 C 870.9 979.1 748.9 1042.0 739.9 1040.1 C 694.5 1020.5 649.2 1000.3 604.3 979.7 C 590.6 973.5 556.2 959.1 544.2 952.3 C 560.0 943.9 591.0 932.2 608.3 925.0 L 731.5 873.4 z"/><path fill="#D9A441" d="M 1316.2 872.9 C 1320.5 874.0 1336.3 881.0 1341.2 883.1 L 1387.7 903.3 C 1424.1 918.8 1468.5 935.2 1503.2 952.3 C 1481.4 961.1 1455.8 973.5 1434.0 983.3 L 1307.9 1040.1 C 1305.6 1040.7 1304.4 1040.9 1302.0 1039.9 C 1241.7 1013.1 1182.9 981.9 1122.7 954.8 C 1140.6 946.4 1161.7 938.5 1180.0 930.6 C 1225.0 911.0 1271.5 892.9 1316.2 872.9 z"/><path fill="#fff" d="M 1293.4 687.8 C 1294.1 688.0 1294.8 688.1 1295.5 688.2 C 1296.4 692.2 1296 726.5 1296.0 732.6 L 1296.0 849.6 C 1254.3 868.8 1209.7 885.4 1167.8 904.7 C 1152.4 911.8 1132.7 920.7 1116.8 926.2 C 1114.1 924.5 1113.3 923.2 1113.2 919.9 C 1112.6 903.4 1112.9 886.8 1112.9 870.3 L 1113 768.3 C 1122.6 762.2 1162.3 745.6 1174.5 740.3 L 1293.4 687.8 z"/><path fill="#fff" d="M 754.9 687.7 C 799.8 706.8 843.9 728.5 888.8 747.7 C 903.2 753.9 921.7 760.7 934.5 769.0 C 935.7 783.0 934.9 810.3 934.9 825.0 C 935.0 857.6 934.9 890.3 934.7 922.9 C 927.7 923.7 903.3 912.1 895.3 908.7 L 828.4 879.7 C 816.9 874.8 762.8 852.6 754.8 846.9 L 754.9 687.7 z"/></symbol></svg>
@@ -354,10 +403,62 @@ footer{padding:clamp(46px,6vw,72px) var(--pad);border-top:1px solid rgba(154,163
 
 <!-- ================= HERO ================= -->
 <section class="hero" id="top">
-  <div class="hero-media">
-    <div class="hero-still" style="background-image:url(data:image/jpeg;base64,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)"></div>
-    <video id="bgv" muted playsinline preload="none" aria-hidden="true" tabindex="-1"
-           data-webm="hero.webm" data-mp4="hero.mp4"></video>
+  <div class="hero-media" id="heromedia">
+    <svg class="hero-turn wide" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true"
+         style="--vx:880px;--vy:690px">
+      <defs>
+        <!-- the fall emerges out of the murk: transparent where the copy is,
+             solid only as it approaches the vertex -->
+        <linearGradient id="fw" x1="-60" y1="90" x2="880" y2="690" gradientUnits="userSpaceOnUse">
+          <stop offset="0"   stop-color="#4C568F" stop-opacity="0"/>
+          <stop offset=".42" stop-color="#4C568F" stop-opacity=".16"/>
+          <stop offset=".74" stop-color="#6B76AC" stop-opacity=".55"/>
+          <stop offset="1"   stop-color="#9AA4D8" stop-opacity="1"/>
+        </linearGradient>
+      </defs>
+      <g class="fall" style="--l:1116">
+        <path class="trail" d="M-60 90 L880 690" stroke="url(#fw)" stroke-width="3.5"/>
+        <path class="head"  d="M-60 90 L880 690" stroke="url(#fw)" stroke-width="5"/>
+      </g>
+      <g class="rise" style="--l:906">
+        <path class="trail" d="M880 690 L1500 30" stroke="#D9A441" stroke-width="16" opacity=".10"/>
+        <path class="trail" d="M880 690 L1500 30" stroke="#D9A441" stroke-width="7"  opacity=".30"/>
+        <path class="trail" d="M880 690 L1500 30" stroke="#F3D08A" stroke-width="3.5"/>
+        <path class="head"  d="M880 690 L1500 30" stroke="#FFF4DE" stroke-width="5.5"/>
+      </g>
+      <g class="vx">
+        <circle cx="880" cy="690" r="46" fill="#D9A441" opacity=".12"/>
+        <circle cx="880" cy="690" r="20" fill="#D9A441" opacity=".3"/>
+        <circle cx="880" cy="690" r="7"  fill="#FFF4DE"/>
+      </g>
+    </svg>
+
+    <svg class="hero-turn tall" viewBox="0 0 390 844" preserveAspectRatio="xMidYMax slice" aria-hidden="true"
+         style="--vx:250px;--vy:778px">
+      <defs>
+        <linearGradient id="ft" x1="-40" y1="285" x2="250" y2="778" gradientUnits="userSpaceOnUse">
+          <stop offset="0"   stop-color="#4C568F" stop-opacity="0"/>
+          <stop offset=".55" stop-color="#4C568F" stop-opacity=".14"/>
+          <stop offset=".85" stop-color="#6B76AC" stop-opacity=".45"/>
+          <stop offset="1"   stop-color="#9AA4D8" stop-opacity="1"/>
+        </linearGradient>
+      </defs>
+      <g class="fall" style="--l:572">
+        <path class="trail" d="M-40 285 L250 778" stroke="url(#ft)" stroke-width="2.4"/>
+        <path class="head"  d="M-40 285 L250 778" stroke="url(#ft)" stroke-width="3.4"/>
+      </g>
+      <g class="rise" style="--l:419">
+        <path class="trail" d="M250 778 L450 410" stroke="#D9A441" stroke-width="11" opacity=".11"/>
+        <path class="trail" d="M250 778 L450 410" stroke="#D9A441" stroke-width="5"  opacity=".32"/>
+        <path class="trail" d="M250 778 L450 410" stroke="#F3D08A" stroke-width="2.6"/>
+        <path class="head"  d="M250 778 L450 410" stroke="#FFF4DE" stroke-width="4"/>
+      </g>
+      <g class="vx">
+        <circle cx="250" cy="778" r="32" fill="#D9A441" opacity=".13"/>
+        <circle cx="250" cy="778" r="14" fill="#D9A441" opacity=".32"/>
+        <circle cx="250" cy="778" r="5"  fill="#FFF4DE"/>
+      </g>
+    </svg>
   </div>
   <div class="hero-scrim"></div>
   <div class="wrap">
@@ -711,34 +812,30 @@ footer{padding:clamp(46px,6vw,72px) var(--pad);border-top:1px solid rgba(154,163
 
   document.querySelectorAll('.rv, .turn').forEach(function(el){ io.observe(el); });
 
-  /* --- hero video: only after the page is quiet, only where it pays off --- */
-  var v = document.getElementById('bgv');
-  var wide = matchMedia('(min-width: 860px)').matches;
-  var net = navigator.connection || {};
-  var goodNet = !(net.saveData || /(^|-)2g$|slow-2g|(^|-)3g$/.test(net.effectiveType || ''));
-  if(v && wide && goodNet && !slow){
-    var ended = false;
-    var load = function(){
-      [['webm','video/webm'],['mp4','video/mp4']].forEach(function(f){
-        var el = document.createElement('source');
-        el.src = v.dataset[f[0]]; el.type = f[1]; v.appendChild(el);
-      });
-      v.load();
-      v.addEventListener('loadeddata', function(){
-        v.classList.add('on');
-        v.parentNode.classList.add('playing');
-        v.play().catch(function(){});
-      }, {once:true});
-      /* it plays once and rests on the risen line — the turn does not un-happen,
-         and the decoder goes idle instead of looping forever */
-      v.addEventListener('ended', function(){ ended = true; }, {once:true});
-    };
-    if('requestIdleCallback' in window) requestIdleCallback(load, {timeout:2200});
-    else addEventListener('load', function(){ setTimeout(load, 700); }, {once:true});
-    new IntersectionObserver(function(e){
-      if(ended || !v.childNodes.length) return;
-      e[0].isIntersecting ? v.play().catch(function(){}) : v.pause();
-    }, {threshold:.05}).observe(v);
+  /* --- hero turn-line ---
+     Vector, so it draws itself on every device — phone included — with no
+     video decoder, no codec fallback and no download. It re-draws whenever the
+     hero comes back into view: the turn is the promise, worth seeing twice. */
+  var hm = document.getElementById('heromedia');
+  if(hm){
+    if(slow){ hm.classList.add('on'); }          /* reduced motion: final state, no draw */
+    else{
+      /* first draw: whichever fires first. requestIdleCallback alone is not
+         enough — it never fires in a background tab, and the hero would stay
+         blank for a visitor who opened the page in a new tab. */
+      var first = false;
+      var draw = function(){ if(first) return; first = true; hm.classList.add('on'); };
+      if('requestIdleCallback' in window) requestIdleCallback(draw, {timeout:800});
+      addEventListener('load', function(){ setTimeout(draw, 350); }, {once:true});
+      setTimeout(draw, 1400);
+      /* and it re-draws on every return to the hero. it only re-arms once the
+         hero is fully gone, so the reset never happens in front of anyone. */
+      new IntersectionObserver(function(e){
+        var r = e[0].intersectionRatio;
+        if(r >= .25) hm.classList.add('on');
+        else if(r === 0) hm.classList.remove('on');
+      }, {threshold:[0,.25]}).observe(hm);
+    }
   }
 
   /* --- form ---

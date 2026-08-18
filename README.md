@@ -6,10 +6,16 @@ Site estático puro: sem build, sem dependências, sem requisições externas.
 
 | arquivo | o que é |
 |---|---|
-| `index.html` | a página inteira — CSS e JS inline, fontes do sistema, primeiro quadro do vídeo embutido em base64 |
-| `hero.webm` | vídeo do hero, 67 KB (navegadores modernos) |
-| `hero.mp4` | vídeo do hero, 146 KB (Safari / fallback) |
+| `index.html` | a página inteira — CSS e JS inline, fontes do sistema, hero em CSS + SVG |
 | `render.yaml` | blueprint da Render: publish path e cache headers |
+
+O hero era um vídeo de 214 KB (`hero.mp4` / `hero.webm`), removido em favor do
+motivo da linha-virada em SVG — o mesmo da seção 06, em escala de hero. O vídeo
+não carregava abaixo de 860 px e o quadro estático de reserva ficava invisível
+sob o scrim, então no celular o hero era azul-marinho chapado. A versão vetorial
+compõe geometrias distintas para paisagem e retrato (`@media(max-aspect-ratio:1/1)`)
+em vez de recortar um frame 16:9, e redesenha a cada retorno ao hero.
+Para recuperar os arquivos: `git checkout b87641e -- hero.mp4 hero.webm`.
 
 ## Deploy
 Render static site, `publishPath: .`, sem build command. Auto-deploy no push para `main`.
