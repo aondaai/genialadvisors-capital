@@ -54,7 +54,7 @@ button,input,select,textarea{font:inherit;color:inherit}
 /* ---------- type scale ---------- */
 h1,h2,h3{line-height:1.1;letter-spacing:-.02em;font-weight:700}
 h1{font-size:clamp(38px,7vw,86px);letter-spacing:-.03em}
-h2{font-size:clamp(31px,5.7vw,76px)}
+h2{font-size:clamp(31px,5.7vw,76px);text-wrap:balance}
 h3{font-size:clamp(18px,2vw,22px);letter-spacing:-.01em}
 p{text-wrap:pretty}
 .kicker{
@@ -278,6 +278,11 @@ nav a:hover{color:var(--white)}
 .card h3{margin-bottom:10px}
 .card p{font-size:14.5px;color:var(--mut);line-height:1.6}
 .light .card p,.ice .card p{color:var(--sub)}
+/* um card deliberadamente escuro dentro de seção clara não pode herdar a cor
+   de texto da seção — ficava navy sobre navy */
+.light .card.dark,.ice .card.dark{color:var(--white)}
+.light .card.dark p,.ice .card.dark p{color:var(--mut)}
+.light .card.dark h3,.ice .card.dark h3{color:var(--white)}
 .tag{display:block;font-size:10.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--amber);margin-bottom:12px}
 .ico{
   width:46px;height:46px;border-radius:12px;display:grid;place-items:center;margin-bottom:18px;
@@ -303,7 +308,7 @@ nav a:hover{color:var(--white)}
 .dk .band.us{background:var(--amber);border-color:var(--amber);color:var(--navy)}
 .dk .band.us p{color:rgba(6,9,43,.78)}
 .dk .band.us .bt em{color:rgba(6,9,43,.62)}
-.dk .band.us::before{background:radial-gradient(circle,rgba(255,255,255,.3),transparent 68%)}
+.dk .band.us::before{background:radial-gradient(circle,rgba(255,255,255,.17),transparent 62%)}
 .band.us::before{
   content:"";position:absolute;right:-40px;top:-40px;width:190px;height:190px;border-radius:50%;
   background:radial-gradient(circle,rgba(217,164,65,.22),transparent 68%);
@@ -369,6 +374,19 @@ nav a:hover{color:var(--white)}
   border-left:3px solid var(--amber);padding:6px 0 6px 26px;
   font-size:clamp(17px,2.3vw,25px);font-weight:700;line-height:1.42;letter-spacing:-.015em;max-width:34ch;
 }
+/* uma frase assinada pelo presidente da casa é um momento da página, não um
+   rodapé de seção — ganha escala, ar e aspas de verdade */
+.quote.lead{
+  border-left:0;padding:0;max-width:22ch;
+  font-size:clamp(26px,4vw,54px);line-height:1.18;letter-spacing:-.028em;
+  margin-top:clamp(46px,6vw,86px);position:relative;
+}
+.quote.lead::before{
+  content:"\201C";position:absolute;left:-.07em;top:-.42em;
+  font-size:2.4em;line-height:1;color:var(--amber);opacity:.32;pointer-events:none;
+}
+.quote.lead cite{margin-top:22px;font-size:14.5px;letter-spacing:0;line-height:1.5}
+@media(max-width:700px){.quote.lead{max-width:none}}
 .quote cite{display:block;margin-top:14px;font-size:13.5px;font-weight:400;font-style:normal;color:var(--mut)}
 .light .quote cite,.ice .quote cite{color:var(--sub)}
 
@@ -382,14 +400,14 @@ nav a:hover{color:var(--white)}
    motivo da virada aparece só na metade que desce — a subida vem depois, na
    seção 03, que é onde a página quebra para a luz. */
 .figure{
-  background:var(--ink);position:relative;overflow:hidden;isolation:isolate;
+  background:#04061A;position:relative;overflow:hidden;isolation:isolate;
   padding-block:clamp(88px,13vw,168px);
 }
 .figure::before{
   content:"";position:absolute;inset:0;z-index:-2;
   background:
-    radial-gradient(58% 68% at 76% 78%,rgba(191,84,64,.16),transparent 66%),
-    radial-gradient(52% 60% at 22% 14%,rgba(36,44,92,.62),transparent 68%);
+    radial-gradient(52% 62% at 78% 80%,rgba(191,84,64,.15),transparent 64%),
+    radial-gradient(46% 54% at 20% 12%,rgba(28,35,84,.5),transparent 66%);
 }
 .fig-line{position:absolute;inset:0;width:100%;height:100%;z-index:-1;pointer-events:none}
 .fig-line path{
@@ -401,7 +419,7 @@ nav a:hover{color:var(--white)}
 .figure.on .fig-line circle{opacity:1;transform:scale(1);
   transition:opacity .5s var(--ease) 1.5s,transform .6s var(--ease) 1.5s}
 .fig-n{
-  font-size:clamp(108px,21vw,272px);font-weight:700;line-height:.82;
+  font-size:clamp(126px,22vw,272px);font-weight:700;line-height:.82;
   letter-spacing:-.055em;color:var(--white);
   font-variant-numeric:tabular-nums;
 }
@@ -443,9 +461,9 @@ nav a:hover{color:var(--white)}
 .row2{display:grid;grid-template-columns:1fr 1fr;gap:15px}
 @media(max-width:620px){.row2{grid-template-columns:1fr}}
 .form .btn{width:100%;margin-top:8px}
-.privacy{margin-top:14px;font-size:11.5px;color:var(--mut-2);line-height:1.5}
+.privacy{margin-top:14px;font-size:11.5px;color:var(--mut);line-height:1.55}
 .srcnote{margin-top:16px;font-size:11.5px;color:var(--mut-2);line-height:1.55;max-width:78ch}
-.formerr{margin-top:14px;font-size:12.5px;line-height:1.55;color:#8A3B2C;background:rgba(191,84,64,.07);border:1px solid rgba(191,84,64,.24);border-radius:9px;padding:11px 13px}
+.formerr{margin-top:14px;font-size:12.5px;line-height:1.55;color:#F0B3A4;background:rgba(191,84,64,.16);border:1px solid rgba(224,132,110,.42);border-radius:9px;padding:11px 13px}
 .formerr a{color:inherit;text-decoration:underline}
 .btn[disabled]{opacity:.45;cursor:not-allowed;pointer-events:none}
 .ok{display:none;text-align:center;padding:28px 8px}
@@ -465,7 +483,7 @@ footer{padding:clamp(46px,6vw,72px) var(--pad);border-top:1px solid rgba(154,163
 
 /* ---------- small screens ---------- */
 @media(max-width:700px){
-  h2 br,h1 br{display:none}           /* deixa o texto quebrar sozinho */
+  h1 br{display:none}           /* deixa o texto quebrar sozinho */
   .brand{gap:10px}
   .brand svg{width:25px;height:25px}
   .brand-txt{padding-left:10px;gap:4px}
@@ -599,7 +617,7 @@ footer{padding:clamp(46px,6vw,72px) var(--pad);border-top:1px solid rgba(154,163
 <section class="dk defer" id="crise">
   <div class="wrap">
     <span class="kicker rv">01 · O momento</span>
-    <h2 class="rv">O maior volume de recuperações<br>judiciais da série histórica.</h2>
+    <h2 class="rv">O maior volume de recuperações judiciais da série histórica.</h2>
     <p class="lede mt rv d1">O estresse corporativo brasileiro deixou de ser evento pontual e virou condição estrutural. Com juro real sufocante até pelo menos 2028 e crédito bancário curto e seletivo, o país deve viver ondas de reestruturação pelos próximos 3 a 5 anos.</p>
 
     <div class="grid g4 mt">
@@ -657,7 +675,7 @@ footer{padding:clamp(46px,6vw,72px) var(--pad);border-top:1px solid rgba(154,163
 <section class="dk defer">
   <div class="wrap">
     <span class="kicker rv">02 · O vazio de mercado</span>
-    <h2 class="rv">O mercado falha exatamente<br>onde a crise é mais letal.</h2>
+    <h2 class="rv">O mercado falha exatamente onde a crise é mais letal.</h2>
     <div class="grid g2 mt" style="align-items:start">
       <div>
         <div class="band rv">
@@ -698,22 +716,22 @@ footer{padding:clamp(46px,6vw,72px) var(--pad);border-top:1px solid rgba(154,163
     <h2 class="rv">Quatro frentes integradas.</h2>
     <p class="lede mt rv d1">Da renegociação preventiva à venda de ativos — com o capital para atravessar no meio do caminho.</p>
     <div class="grid g2 mt">
-      <div class="card plain rv">
+      <div class="card pale rv">
         <span class="tag">01 · Porta de entrada preventiva</span>
         <h3>Reestruturação de passivos</h3>
         <p>Diagnóstico 360º, estratégia de credores e renegociação com bancos, debenturistas, FIDCs e fornecedores. Waivers, standstill, reperfilamento e gestão de covenants — antes do contencioso.</p>
       </div>
-      <div class="card plain rv d1">
+      <div class="card pale rv d1">
         <span class="tag">02 · Ao lado dos escritórios jurídicos</span>
         <h3>Recuperação judicial e extrajudicial</h3>
         <p>Modelagem e laudos econômico-financeiros, desenho do plano de recuperação, negociação com classes de credores e suporte em assembleias. O braço financeiro do caso.</p>
       </div>
-      <div class="card plain rv d2">
+      <div class="card pale rv d2">
         <span class="tag">03 · O diferencial que boutique não tem</span>
         <h3>Capital solutions &amp; DIP financing</h3>
         <p>Dinheiro novo para atravessar e sair da crise: DIP, bridge, FIDC, sale &amp; leaseback e cessão de carteiras — estruturado e distribuído pela plataforma Genial.</p>
       </div>
-      <div class="card plain rv d3">
+      <div class="card pale rv d3">
         <span class="tag">04 · Da estabilização à saída</span>
         <h3>Turnaround &amp; distressed M&amp;A</h3>
         <p>Fluxo de caixa em 13 semanas, PMO de crise e interim CRO. Venda de ativos e UPIs (unidades produtivas isoladas), M&amp;A de situações especiais e stalking horse (proposta-âncora que baliza o leilão).</p>
@@ -726,7 +744,7 @@ footer{padding:clamp(46px,6vw,72px) var(--pad);border-top:1px solid rgba(154,163
 <section class="ice defer" id="plataforma">
   <div class="wrap">
     <span class="kicker rv">04 · Por que a Genial</span>
-    <h2 class="rv">Reestruturar dívida sem dinheiro novo<br>é só metade da solução.</h2>
+    <h2 class="rv">Reestruturar dívida sem dinheiro novo é só metade da solução.</h2>
     <div class="wheel">
       <div>
         <p class="lede rv d1">Boutiques têm assessoria. Bancos têm balanço. A Genial reúne as duas coisas na mesma casa — e por isso sai da mesa de negociação com uma solução financiada, não com uma recomendação.</p>
@@ -747,7 +765,7 @@ footer{padding:clamp(46px,6vw,72px) var(--pad);border-top:1px solid rgba(154,163
       </div>
     </div>
     <div class="mt rv">
-      <blockquote class="quote" style="max-width:70ch">“O Brasil tem juros reais altíssimos e o que temos hoje são ondas de reestruturações de dívidas.”
+      <blockquote class="quote lead rv">O Brasil tem juros reais altíssimos e o que temos hoje são ondas de reestruturações de dívidas.
         <cite>Rodolfo Riechert, CEO do Grupo Genial</cite>
       </blockquote>
     </div>
@@ -819,8 +837,8 @@ footer{padding:clamp(46px,6vw,72px) var(--pad);border-top:1px solid rgba(154,163
           <span class="pill">Escritórios de insolvência</span>
           <span class="pill">Fundos</span>
         </div>
-        <p style="margin-top:26px;font-size:13.5px;color:var(--sub);line-height:1.7" class="rv d3">
-          <b style="color:var(--ink)">Genial Restructuring Advisors</b><br>
+        <p class="foot-mark rv d3" style="margin-top:26px;font-size:13.5px;line-height:1.7">
+          <b>Genial Restructuring Advisors</b><br>
           Reestruturação &amp; Situações Especiais · Grupo Genial<br>
           São Paulo · Rio de Janeiro
         </p>
